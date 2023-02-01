@@ -2,22 +2,21 @@ import * as Styled from "./styles"
 import Cart from '../../assets/images/Cart.svg'
 import CloseCart from '../../assets/images/CloseCart.svg'
 import Image from "next/image"
-import { useEffect, useState } from "react"
+import {  useState } from "react"
 import { useSelector, useDispatch } from 'react-redux'
-import { IProduct, IProducts } from "@/interfaces"
-import { removeItem, decrementQuantity, incrementQuantity, addToCart } from '../../redux/cart/Cart.store'
+import { IProduct } from "@/interfaces"
+import { removeItem, decrementQuantity, incrementQuantity } from '../../redux/cart/Cart.store'
 import { selectCartTotal } from "@/redux/cart/cart.selector"
-import produce from "immer"
 
 
 export default function NavigationBar() {
   const [cartOpen, setCartOpen] = useState<boolean>(false)
 
-
   const  {cart} : any = useSelector<{
     cart: IProduct[]
   }>(state => state.cart)
 
+  const total = useSelector(selectCartTotal);
 
   const dispatch = useDispatch();
 
@@ -35,8 +34,6 @@ export default function NavigationBar() {
 
 const { cartTotalQuantity }:any = useSelector<any>(state => state.cart)
 
-const total = useSelector(selectCartTotal);
-console.log('total',total)
 
   return (
     <Styled.TopMenu>
@@ -61,13 +58,14 @@ console.log('total',total)
       </Styled.Cartbutton>
 
       <div id="nav" className={cartOpen ? "open" : ""}>
+        <div className="containerWrapperAll">
         <div className="containerTop">
         <span>Carrinho de compras</span>
         <button onClick={() => {setCartOpen(!cartOpen)}}><Image src={CloseCart} alt='' width={40} height={40}/></button>
         </div>
         <div className="containerMid">
         {cart.map((item:IProduct) => (
-          <div className="containerProductCart">
+          <div key={item.id}className="containerProductCart">
             <div className="containerWrapper">
             <Image
               loader={() => item.photo}
@@ -96,6 +94,7 @@ console.log('total',total)
         <span>R${total}</span>
         </div>
         <button>Finalizar Compra</button>
+        </div>
         </div>
       </div>
     </Styled.TopMenu>

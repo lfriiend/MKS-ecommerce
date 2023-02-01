@@ -22,7 +22,6 @@ export const Products: React.FC = () => {
     try {
       const res = await fetch('https://mks-challenge-api-frontend.herokuapp.com/api/v1/products?page=1&rows=8&sortBy=name&orderBy=DESC', { cache: 'force-cache' });
       const data = await res.json()
-      console.log(data)
       setData(data?.products)
     } catch (error) {
       console.log(error)

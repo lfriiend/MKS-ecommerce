@@ -13,18 +13,24 @@ padding-inline: 80px;
   display: none;
 }
 
+.containerWrapperAll{
+  height: 100%;
+}
+
 #nav.open{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100vh;
+  height: 100%;
   width: 30%;
   background-color: #0F52BA;
   box-shadow: -5px 0px 6px rgba(0, 0, 0, 0.13);
-  position: fixed;
+  position: absolute;
   top: 0;
   right: 0;
   z-index: 1;
+  
+  
 
   .containerTop{
     width: 100%;
@@ -34,14 +40,18 @@ padding-inline: 80px;
   }
 
 .containerMid{
-  height: 100%;
+  max-height: 70%;
+  overflow-y: scroll;
 }
 
   .containerBot{
+    z-index: 1;
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    position: absolute;
+    bottom: 0;
 
     button{
       color: white;
@@ -82,6 +92,7 @@ padding-inline: 80px;
   justify-content: space-around;
   align-items: center;
   position: relative;
+  z-index: 3;
 
 .quantityWrapper{
   display: flex;
@@ -189,8 +200,4 @@ font-weight: 700;
 font-size: 18px;
 
 
-/* position: absolute;
-height: 45px;
-left: 1262px;
-top: 29px; */
 `

@@ -2,12 +2,12 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export interface Product {
   id: string;
-  price: string;
+  price: number;
   quantity: number
 }
 
 export interface CartState {
-cart: Array<{ id: number; quantity: number; price: string }>;
+cart: { id: number; quantity: number; price: number }[];
 cartTotalQuantity: number;
 subtotal: number;
 products: Product[];
@@ -63,7 +63,13 @@ const cartSlice = createSlice({
       }
     },
 
-}});
+    calculateSubtotal: state => {
+      state.subtotal = 0;
+      state.cart.forEach(item => {
+        state.subtotal += item.price * item.quantity;
+      });
+
+}}});
 
 export const cartReducer = cartSlice.reducer;
 export const {
@@ -71,6 +77,7 @@ export const {
   incrementQuantity,
   decrementQuantity,
   removeItem,
+  calculateSubtotal
 } = cartSlice.actions;
 
 export default cartSlice.reducer

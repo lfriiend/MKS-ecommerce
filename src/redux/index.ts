@@ -13,6 +13,7 @@ const store = configureStore({
     getDefaultMiddleware().concat()
 })
 
+
 export default store
 
 export interface RootState{

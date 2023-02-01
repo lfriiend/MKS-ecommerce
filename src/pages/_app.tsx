@@ -3,7 +3,7 @@ import type { AppProps } from 'next/app'
 import { Provider } from 'react-redux'
 import { Montserrat } from '@next/font/google'
 
-import {store} from '../redux/store'
+import store from '../redux'
 
 const montserrat = Montserrat({
   subsets: ['latin'],

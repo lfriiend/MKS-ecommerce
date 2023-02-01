@@ -1,2 +1,0 @@
-export const ADDING_CART = "ADDING_CART";
-export const REMOVING_CART = "REMOVING_CART";
